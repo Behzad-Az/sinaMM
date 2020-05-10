@@ -40,3 +40,6 @@ build
 .module-cache
 _nogit
 todo.md
+
+# db seeds
+server/db/seeds/*
