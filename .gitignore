@@ -34,9 +34,8 @@ bower_components/
 # IDE/Editor data
 .idea
 .DS_Store
+.env
 
-
-.DS_STORE
 node_modules
 build
 .module-cache
