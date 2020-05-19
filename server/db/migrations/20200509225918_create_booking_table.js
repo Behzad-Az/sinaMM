@@ -4,6 +4,7 @@ exports.up = function(knex) {
   return knex.schema
       .createTableIfNotExists('bookings_alpha', t => {
         t.bigIncrements('id');
+        t.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
         t.timestamp('creation_time').notNullable();
         t.timestamp('appointment_time').notNullable();
         t.string('customer_first_name', 50).notNullable();
@@ -21,20 +22,22 @@ exports.up = function(knex) {
         t.bigIncrements('id');
         t.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
         t.timestamp('deleted_at');
-        t.string('name', 100).notNullable().defaultTo('Not Available');
-        t.string('phone_num', 20).notNullable().defaultTo('0-000-000-0000');
-        t.string('email_address', 100).notNullable().defaultTo('Not Available');
+        t.string('name', 100).notNullable();
+        t.string('phone_num', 20).notNullable().defaultTo('Not Entered');
+        t.string('email_address', 100).notNullable().defaultTo('Not Entered');
         t.decimal('commission_rate').notNullable().defaultTo(0);
+        t.string('close_api_key', 50).defaultTo('Not Entered');
       })
       .createTableIfNotExists('customers', t => {
         t.bigIncrements('id');
         t.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
         t.timestamp('deleted_at');
-        t.string('name', 100).notNullable().defaultTo('Not Available');
-        t.string('phone_num', 20).notNullable().defaultTo('0-000-000-0000');
-        t.string('email_address', 100).notNullable().defaultTo('Not Available');
-        t.string('acquired_from', 100).notNullable().defaultTo('Not Available');
-        t.string('reason_why_good_fit', 3000).notNullable().defaultTo('Not Available');
+        t.string('first_name', 100).defaultTo('Not Entered');
+        t.string('last_name', 100).defaultTo('Not Entered');
+        t.string('phone_num', 20).defaultTo('Not Entered');
+        t.string('email_address', 100).notNullable();
+        t.string('acquired_from', 100).defaultTo('Unknown');
+        t.string('reason_why_good_fit', 3000).defaultTo('Not Entered');
       })
       .createTableIfNotExists('products', t => {
         t.bigIncrements('id');
@@ -56,7 +59,7 @@ exports.up = function(knex) {
         t.timestamp('web_booking_time').notNullable();
         t.timestamp('appoint_time').notNullable();
         t.string('appoint_time_zone', 100).notNullable();
-        t.string('appoint_status', 20).notNullable();
+        t.string('appoint_status', 20).notNullable().defaultTo('Pending');
       })
       .createTableIfNotExists('sales', t => {
         t.bigIncrements('id');
