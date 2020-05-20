@@ -47,6 +47,7 @@ exports.up = function(knex) {
         t.string('description', 1000).notNullable().defaultTo('Not Available');
         t.string('version', 20).notNullable().defaultTo('Not Available');
         t.decimal('full_price').notNullable().defaultTo(0);
+        t.string('payment_freq', 20).notNullable().defaultTo('Not Entered');
         t.string('currency').notNullable().defaultTo('USD');
       })
       .createTableIfNotExists('bookings', t => {
