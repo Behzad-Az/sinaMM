@@ -37,6 +37,7 @@ exports.up = function(knex) {
         t.string('phone_num', 20).defaultTo('Not Entered');
         t.string('email_address', 100).notNullable();
         t.string('acquired_from', 100).defaultTo('Unknown');
+        t.string('occupation', 100).defaultTo('Not Entered');
         t.string('reason_why_good_fit', 3000).defaultTo('Not Entered');
       })
       .createTableIfNotExists('products', t => {
@@ -61,6 +62,7 @@ exports.up = function(knex) {
         t.timestamp('appoint_time').notNullable();
         t.string('appoint_time_zone', 100).notNullable();
         t.string('appoint_status', 20).notNullable().defaultTo('Pending');
+        t.string('so_booking_id', 20).notNullable().defaultTo('Unknown');
       })
       .createTableIfNotExists('sales', t => {
         t.bigIncrements('id');
